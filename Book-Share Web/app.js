@@ -15,9 +15,21 @@ app.get("/",function(req,res){
   res.render("home");
 });
 
+app.get("/register",function(req,res){
+  res.render("register");
+})
+
+app.post("/register",function(req,res){
+  const userName = req.body.username;
+  const password = req.body.password;
+  console.log(userName);
+  console.log(password);
+})
 
 
-
+app.get("/login",function(req,res){
+  res.render("login");
+})
 
 
 

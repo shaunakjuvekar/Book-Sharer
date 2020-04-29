@@ -106,3 +106,9 @@ body {
 .mastfoot {
   color: rgba(255, 255, 255, .5);
 }
+
+.footer{
+  text-align: center;
+  color: white;
+  font-weight: normal;
+}
