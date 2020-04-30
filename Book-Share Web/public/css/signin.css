@@ -9,7 +9,7 @@ body {
     /* Full height */
     height: 100%; 
   
-    /* Center and scale the image nicely */
+    /* Center and scale the image nicely */ 
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -21,13 +21,17 @@ body {
   align-items: center;
   padding-top: 40px;
   padding-bottom: 40px;
-  /*background-color: rgb(45, 49, 49); */
+  background-color: rgb(45, 49, 49);
 }
 
 h1{
     color: white;
 }
-
+p{
+  text-align: center;
+  margin-top: 0px;
+  position: absolute;
+}
 .form-signin {
   width: 100%;
   max-width: 330px;
