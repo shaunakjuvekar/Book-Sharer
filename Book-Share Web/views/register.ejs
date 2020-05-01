@@ -16,6 +16,9 @@
     <div class="container">
    
     <form action="/register" method="post" class="form-signin"  autocomplete="off">
+        <div class="alert alert-warning" role="alert">
+         <%= success %>
+        </div>
         <h1 class="h3 mb-3 font-weight-heavy">Please register</h1>
         <label for="inputEmail" class="sr-only">Username</label>
         <input type="text" name="username" class="form-control" placeholder="Username" required autofocus>

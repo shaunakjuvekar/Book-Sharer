@@ -2,7 +2,6 @@ const express = require("express");
 const mongoose = require("mongoose");
 const ejs = require("ejs");
 const bodyParser = require("body-parser");
-var JSAlert = require("js-alert");
 
 const app = express();
 
@@ -26,22 +25,17 @@ app.get("/",function(req,res){
 });
 
 app.get("/register",function(req,res){
-  res.render("register");
+  res.render("register",{success:""});
 })
 
 app.post("/register",function(req,res){
   const userName = req.body.username;
   const passWord = req.body.password;
   
- 
-  User.find({username: userName},function(err,user){
+  User.findOne({username: userName},function(err,user){
     if (!err){
      
-      if (user){
-        console.log(user)
-        //res.render("register",{success: "User already exists, please create another"})
-      }
-      else{
+      if (!user){
         const user = new User({username: userName, password: passWord})
         user.save(function(err){
           if (!err){
@@ -49,8 +43,10 @@ app.post("/register",function(req,res){
           }
         })
       }
+      else{
+        res.render("register",{success: "User already exists, please create another"});
+      }
     }
-    
     
   })
 
