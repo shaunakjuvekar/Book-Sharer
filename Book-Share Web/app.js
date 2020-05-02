@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const ejs = require("ejs");
 const bodyParser = require("body-parser");
+const session = require("express-session");
 
 const app = express();
 
@@ -9,6 +10,7 @@ app.set('view engine','ejs');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
+app.use(session({secret: 'mySecret', resave: false, saveUninitialized: false}));
 
 mongoose.connect("mongodb://localhost:27017/userDB",{ useNewUrlParser: true , useUnifiedTopology: true })
 
@@ -21,7 +23,7 @@ const User = mongoose.model('User',userSchema);
 
 
 app.get("/",function(req,res){
-  res.render("home");
+  res.render("cover");
 });
 
 app.get("/register",function(req,res){
@@ -40,8 +42,11 @@ app.post("/register",function(req,res){
         user.save(function(err){
           if (!err){
             console.log("User inserted");
-          }
-        })
+            req.session.Name = userName;    
+            res.redirect("/dashboard");
+            };
+          })
+        
       }
       else{
         res.render("register",{success: "User already exists, please create another"});
@@ -52,12 +57,16 @@ app.post("/register",function(req,res){
 
 })
 
+app.get("/dashboard",function(req,res){
+  const Name = req.session.Name
+  res.render("dashboard",{username: Name});
+})
 
 app.get("/login",function(req,res){
   res.render("login");
 })
 
-
+app.post("/")
 
 app.listen(3000,function(){
     console.log("Server started on port 3000");
