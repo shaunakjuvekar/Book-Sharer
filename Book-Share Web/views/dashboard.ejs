@@ -1,14 +1,26 @@
 <%- include('partials/header') %>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Dashboard</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark navprop">
+        <a class="navbar-brand navprop" href="#">Dashboard</a>
         <a class="navbar-link" href="#">Books View</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"> 
         </button>
     </nav>
-    <h1>Welcome <%= username %>!</h1>
-
+    <div class="container-fluid">
+        <h1>Welcome <%= username %>!</h1>
+            <form>
+                <div class="form-group">
+                <label class="labeltext" for="inputbooks">Books you want to share (description useful)</label>
+                <input type="text" class="form-control" name="inputbooks">
+                </div>
+                <div class="form-group">
+                <label class="labeltext" for="outputbooks">Books you want (description useful)</label>
+                <textarea class="form-control textarea" name="outputbooks" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+    </div>
 <%- include('partials/footer') %>
  
 </body>
