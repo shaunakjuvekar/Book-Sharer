@@ -5,8 +5,9 @@ const bodyParser = require("body-parser");
 const session = require("express-session");
 const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
+const date = require('date-and-time');
 
-const app = express();
+const app = express();  
 
 app.set('view engine','ejs');
 
@@ -17,12 +18,18 @@ app.use(session({secret: 'mySecret', resave: false, saveUninitialized: false}));
 app.use(passport.initialize()); 
 app.use(passport.session());
 
+const now = new Date();
+const pattern = date.compile('MMM DD YYYY hh:mm A');
+const datestr = date.format(now, pattern);                  // => 'Fri, Jan 02 2015 06:08 PM'
 
-mongoose.connect("mongodb://localhost:27017/userDB",{ useNewUrlParser: true , useUnifiedTopology: true })
+mongoose.connect("mongodb://localhost:27017/userDB",{ useNewUrlParser: true , useUnifiedTopology: true, useFindAndModify: false })
 
 const userSchema = new mongoose.Schema({
   username : String,
-  password: String
+  password: String,
+  inputbooks: String,
+  outputbooks: String,
+  date        : String
 })
 
 userSchema.plugin(passportLocalMongoose);
@@ -50,8 +57,7 @@ app.post("/register",function(req,res){
   
   User.register({username:userName}, passWord, function(err, user){
     if (err){
-      console.log(err);
-      res.redirect("/register");
+      res.render("register",{success:"This username is already registered"});
     }
     else{
       passport.authenticate("local")(req,res,function(){
@@ -94,8 +100,35 @@ app.get("/dashboard",function(req,res){
     res.render("dashboard",{username: Name});
   }
   else{
-    res.redirect("register");
+    res.redirect("cover");
   }
+})
+
+app.post("/dashboard",function(req,res){
+  
+  let Name = req.session.Name;
+  const books = {
+    inputbooks: req.body.inputbooks,
+    outputbooks: req.body.outputbooks,
+    date        : datestr
+  }
+
+  User.findOneAndUpdate({username: Name},books,function(err,user){
+    if (err){
+      console.log(err);
+    }
+    else{
+      console.log(user);
+    }
+  })
+  res.redirect("/books");
+})
+
+app.get("/books",function(req,res){
+  User.find(function(err,users){
+    res.render("books",{ Users : users});
+  })
+  
 })
 
 app.listen(3000,function(){

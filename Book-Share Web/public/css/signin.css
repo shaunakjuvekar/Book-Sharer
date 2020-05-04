@@ -5,14 +5,15 @@ body {
 
 body {
 
-    background-image: url("/images/books1.jpg");
-    /* Full height */
-    height: 100%; 
-  
-    /* Center and scale the image nicely */ 
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+  height: 100%;
+  background-image: url("/images/books1.jpg");
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 90%;
+  background-color: black; 
+  color: #fff;
   
 
   display: -ms-flexbox;
@@ -21,7 +22,7 @@ body {
   align-items: center;
   padding-top: 40px;
   padding-bottom: 40px;
-  background-color: rgb(45, 49, 49);
+  background-color: black;
 }
 
 h1{
@@ -65,9 +66,13 @@ p{
     color: rgba(255, 255, 255, .5);
   }
 .footer{
-    text-align: center;
-    color: white;
-    font-weight: normal;
-    margin: auto;
- 
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  /*background-color:darkslategray;*/
+  color: white;
+  text-align: center;
+  margin-bottom: 0;
+  padding: 0 0 40px 42%;
   }

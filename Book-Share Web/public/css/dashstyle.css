@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(131, 92, 20);
+    background-color: rgb(196, 137, 29);
     min-height: 100vh;
     position: relative;
     margin: 0;
@@ -10,8 +10,18 @@ body {
   font-size: 2rem;
 }
 
+.nav-item{
+  color: white;
+  font-family: 'Times New Roman', Times, serif;
+}
+
 .container-fluid{
   width: 70%;
+  margin-top: 10px;
+}
+
+.col-sm{
+  padding: 0;
 }
 
 h1{
@@ -28,6 +38,22 @@ h1{
 }
 .textarea{
   background-color: white;
+}
+
+
+.pcredits{
+  color: white;
+  margin: 20px 0 10px 0;
+}
+
+hr{
+  border: none;
+  border-top: 3px double #333;
+  color: #333;
+  content: '$$'
+  overflow: visible;
+  text-align: center;
+  height: 5px;  
 }
 
 .footer-text{

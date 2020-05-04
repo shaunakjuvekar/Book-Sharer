@@ -2,77 +2,32 @@
  * Globals
  */
 
-/* Links */
-a,
-a:focus,
-a:hover {
-  color: #fff;
-}
-
-/* Custom default button */
-.btn-secondary,
-.btn-secondary:hover,
-.btn-secondary:focus {
-  color: #333;
-  text-shadow: none; /* Prevent inheritance from `body` */
-  background-color: #fff;
-  border: .05rem solid #fff;
-}
-
 
 /*
  * Base structure
  */
-
-html,
-body {
-  
+html{
   height: 100%;
-  background-color: #333;
 }
-
 body {
+  height: 100%;
   background-image: url("/images/books1.jpg");
-  /* Full height */
-  height: 100%; 
 
   /* Center and scale the image nicely */
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
-
-
-  display: -ms-flexbox;
-  display: flex;
+  background-size: 90%;
+  background-color: black; 
   color: #fff;
-  text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
-  box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
+  
 }
 
-.cover-container {
-  max-width: 42em;
-  margin-top: 5rem;
+.container-fluid {
+  padding: 70px 0 0 90px;
 }
-.img-bg {
-  /* Set rules to fill background */
-  min-height: 100%;
-  min-width: 1024px;
-	
-  /* Set up proportionate scaling */
-  width: 100%;
-  height: auto;
-	
-  /* Set up positioning */
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-@media screen and (max-width: 1024px) { /* Specific to this particular image */
-  .img-bg {
-    left: 50%;
-    margin-left: -512px;   /* 50% */
-  }
+p.lead{
+  font-weight: 500;
+  font-style: italic;
 }
 
 /*
@@ -83,22 +38,6 @@ body {
 /*
  * Cover
  */
-.cover {
-  margin-right: 20rem;
-  padding: 0 1.5rem;
-}
-
-.cover-heading{
-  margin-top: 5rem;
-  font-weight: bold;
-  font-size: 500;
-}
-
-.cover .btn-lg {
-  padding: .75rem 1.25rem;
-  font-weight: 700;
-}
-
 
 /*
  * Footer
@@ -108,7 +47,13 @@ body {
 }
 
 .footer{
-  text-align: center;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  /*background-color:darkslategray;*/
   color: white;
-  font-weight: normal;
+  text-align: center;
+  margin-bottom: 0;
+  padding: 20px 0 20px 0;
 }

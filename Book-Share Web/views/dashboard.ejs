@@ -1,22 +1,26 @@
 <%- include('partials/header') %>
 
 <body>
+    <% let today = new Date().toDateString() %>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark navprop">
-        <a class="navbar-brand navprop" href="#">Dashboard</a>
-        <a class="navbar-link" href="#">Books View</a>
+        <a class="navbar-brand navprop" href="/dashboard">Dashboard</a>
+        <a class="navbar-link" href="/books">Books View</a>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active"><%= today %></li>
+        </ul>   
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"> 
         </button>
     </nav>
     <div class="container-fluid">
         <h1>Welcome <%= username %>!</h1>
-            <form>
+            <form action="/dashboard" method="post">
                 <div class="form-group">
-                <label class="labeltext" for="inputbooks">Books you want to share (description useful)</label>
-                <input type="text" class="form-control" name="inputbooks">
+                <label class="labeltext" for="inputbooks">Books you want to lend (description useful)</label>
+                <input type="text" class="form-control" name="inputbooks" required>
                 </div>
                 <div class="form-group">
-                <label class="labeltext" for="outputbooks">Books you want (description useful)</label>
-                <textarea class="form-control textarea" name="outputbooks" rows="3"></textarea>
+                <label class="labeltext" for="outputbooks">Books you would like to borrow (description useful)</label>
+                <textarea class="form-control textarea" name="outputbooks" rows="3" required></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>

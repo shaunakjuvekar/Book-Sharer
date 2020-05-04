@@ -15,23 +15,21 @@
 
   </head>
   
-  <body class="text-center">
+  <body>
     <!--<img src="/images/books1.jpg" class="img-bg">   -->
-    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-  
-
-  <main role="main" class="inner cover">
-    <h1 class="cover-heading">Book Sharer</h1>
-    <p class="lead">Book Sharer is a user centric online book inventory and lending place. Both online as well as offline systems supported! </p>
-    <p class="lead">
-      <a href="/register" class="btn btn-md btn-secondary">Register</a>
-      <a href="login" class="btn btn-md btn-secondary">Login</a>
-    </p>
-  </main>
+      <div class="container-fluid">
+        <h1 class="cover-heading">Book Sharer</h1>
+        <p class="lead">Book Sharer is a user centric online book inventory and lending place.<br> Both online as well as offline systems supported! </p>
+        <p class="lead">
+          <a href="/register" class="btn btn-md btn-secondary">Register</a>
+          <a href="/login" class="btn btn-md btn-secondary">Login</a>
+        </p>
+        <p><button onclick="window.location.href='/books'" class="btn btn-lg btn-primary">Books View</button></p>
 
 
-  <%- include('partials/footer') %>
-</div>  
-</body>
+
+     <%- include('partials/footer') %>
+    </div>  
+  </body>
 </html>
 
