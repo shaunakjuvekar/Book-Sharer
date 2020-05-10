@@ -18,18 +18,26 @@ app.use(session({secret: 'mySecret', resave: false, saveUninitialized: false}));
 app.use(passport.initialize()); 
 app.use(passport.session());
 
-const now = new Date();
-const pattern = date.compile('MMM DD YYYY hh:mm A');
-const datestr = date.format(now, pattern);                  // => 'Fri, Jan 02 2015 06:08 PM'
+
 
 mongoose.connect("mongodb://localhost:27017/userDB",{ useNewUrlParser: true , useUnifiedTopology: true, useFindAndModify: false })
+
+const messageSchema = new mongoose.Schema({
+  msg: String,
+  msgDate: String,
+  recipient: String,
+  sender: String
+});
+
+const Message = new mongoose.model("Message",messageSchema);
 
 const userSchema = new mongoose.Schema({
   username : String,
   password: String,
   inputbooks: String,
   outputbooks: String,
-  date        : String
+  date        : String,
+  messages : [messageSchema]
 })
 
 userSchema.plugin(passportLocalMongoose);
@@ -106,6 +114,9 @@ app.get("/dashboard",function(req,res){
 
 app.post("/dashboard",function(req,res){
   
+  const now = new Date();
+  const pattern = date.compile('MMM DD YYYY hh:mm A');
+  const datestr = date.format(now, pattern);                  // => 'Fri, Jan 02 2015 06:08 PM'
   let Name = req.session.Name;
   const books = {
     inputbooks: req.body.inputbooks,
@@ -132,11 +143,23 @@ app.get("/books",function(req,res){
 })
 
 app.post('/message',function(req,res){
+  
+  const now = new Date();
+  const pattern = date.compile('MMM DD YYYY hh:mm A');
+  const datestr = date.format(now, pattern);              // => 'Fri, Jan 02 2015 06:08 PM'
+                  
   const msg = req.body.msg;
   const recipient = req.body.rName;
   const sender = req.session.Name;
-
-
+  const message = new Message({
+    msg: msg,
+    msgDate: datestr,
+    recipient: recipient,
+    sender: sender
+  })
+  message.save();
+  User.findOne({username: recipient},function(err,user){
+    
 
 })
 
