@@ -20,7 +20,7 @@ app.use(passport.session());
 
 
 
-mongoose.connect("mongodb://localhost:27017/userDB",{ useNewUrlParser: true , useUnifiedTopology: true, useFindAndModify: false })
+mongoose.connect("mongodb+srv://admin_shaun:test321@cluster0-fi5rg.mongodb.net/userDB",{ useNewUrlParser: true , useUnifiedTopology: true, useFindAndModify: false })
 
 const messageSchema = new mongoose.Schema({
   msg: String,
@@ -174,6 +174,6 @@ app.post('/message',function(req,res){
   res.redirect("/books");
 })
 
-app.listen(3000,function(){
-    console.log("Server started on port 3000");
+app.listen(process.env.PORT || 3000,function(){
+    console.log("Server running");
 })
