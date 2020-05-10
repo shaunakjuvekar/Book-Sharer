@@ -105,12 +105,15 @@ app.post("/login",function(req,res){
 app.get("/dashboard",function(req,res){
   const Name = req.session.Name
   if (req.isAuthenticated()){
-    res.render("dashboard",{username: Name});
+    User.findOne({username: Name },function(err,user){
+      res.render("dashboard",{User: user, Messages: user.messages});
+    })
+    
   }
   else{
     res.redirect("cover");
   }
-})
+});
 
 app.post("/dashboard",function(req,res){
   
@@ -159,10 +162,18 @@ app.post('/message',function(req,res){
   })
   message.save();
   User.findOne({username: recipient},function(err,user){
-    
+    if (user){
+      user.messages.push(message);
+      user.save();
+    }
+    else{
+      console.log("user not found");
+    }
 
+  })
+  res.redirect("/books");
 })
 
-const server = app.listen(3000,function(){
+app.listen(3000,function(){
     console.log("Server started on port 3000");
 })
