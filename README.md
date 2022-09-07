@@ -1,1 +1,2 @@
 # Book-Sharer
+I built this website to enable exchange of books by the users of the website. So the way this works is that each user first creates an account. The user details are stored in MongoDB Cloud. The user can then request and/or list certain books that he/she wants to borrow/lend. The other users can then either search for books or view the books in the 'Books View' section. If a user finds a book she/he is looking for, they can message the owner of the respective book.
